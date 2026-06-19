@@ -36,6 +36,30 @@ Isso gera caos, perda de arquivos e uma confusão imensa quando trabalhamos em e
 O Git gerencia o histórico de um único arquivo (ou conjunto de arquivos) ao longo do tempo. Em vez de criar cópias da pasta, o Git cria uma "linha do tempo" onde cada ponto marcante é registrado com segurança.
 
 > **Definição formal:** O Git é um sistema de controle de versão distribuído, usado para registrar alterações em arquivos ao longo do tempo, permitindo acompanhar diferentes versões de um projeto, voltar para pontos anteriores e trabalhar com segurança em equipe.
+>
+> **O que significa “distribuído”?** Isso quer dizer que cada pessoa que trabalha no projeto recebe uma cópia completa do histórico e do repositório, em vez de depender de um único computador central para guardar tudo.
+>
+> **Qual seria a outra opção?** A alternativa mais comum é o modelo **centralizado**, em que existe um único servidor principal que guarda o histórico e todas as pessoas acessam esse servidor.
+>
+> **Vantagens do modelo distribuído (Git):**
+> - cada pessoa pode trabalhar mesmo sem internet;
+> - é possível voltar para versões antigas com mais facilidade;
+> - o projeto não depende de um único servidor para funcionar;
+> - ajuda muito quando várias pessoas editam o mesmo projeto.
+>
+> **Desvantagens do modelo distribuído:**
+> - pode parecer mais complicado no começo;
+> - exige aprender alguns conceitos e comandos novos;
+> - se a pessoa não organizar bem os commits, o histórico pode ficar confuso.
+>
+> **Vantagens do modelo centralizado:**
+> - é mais simples de entender no início;
+> - centraliza tudo em um lugar só.
+>
+> **Desvantagens do modelo centralizado:**
+> - depende de um servidor principal;
+> - se o servidor ficar indisponível, o trabalho pode ser prejudicado;
+> - nem sempre é tão confortável para trabalho offline.
 
 Agora que já entendemos por que o Git é tão útil, podemos observar como ele organiza esse processo em etapas claras. Na próxima seção, vamos descobrir como essas etapas funcionam na prática.
 
@@ -43,7 +67,7 @@ Agora que já entendemos por que o Git é tão útil, podemos observar como ele 
 
 ## 3. A Anatomia do Git: O Fluxo das 3 Áreas 🗺️
 
-Para entender o Git, precisamos entender suas três áreas principais de trabalho. Imagine que você está organizando uma **caixa de mudanças**:
+Para entender o Git, precisamos conhecer três estados principais do projeto: o que está sendo editado, o que está pronto para ser registrado e o que já foi salvo no histórico. Para ajudar nessa ideia, vamos continuar com a analogia da **mesa** e da **caixa de mudanças**:
 
 ```mermaid
 graph LR
@@ -56,9 +80,11 @@ graph LR
     style D fill:#948A01,stroke:#333,stroke-width:2px
 ```
 
-* **1. Working Directory (Diretório de Trabalho):** É a sua mesa de trabalho atual. Onde você cria, edita e deleta suas linhas de código em Python. O Git está observando, mas ainda não guardou nada.
-* **2. Staging Area (Área de Preparação):** É a caixa de papelão aberta do lado da mesa. Você coloca ali os arquivos que terminou de editar e que quer salvar juntos. É a fase do `git add`.
-* **3. Local Repository (Repositório Local):** É quando você fecha a caixa com fita adesiva e escreve uma etiqueta nela ("Função de soma adicionada"). É o `git commit`. Agora está salvo com segurança na memória do seu computador.
+* **1. Working Directory (Diretório de Trabalho):** é a pasta onde você realmente edita os arquivos. Nesse momento, o Git acompanha as mudanças, mas ainda não criou uma versão oficial do projeto.
+* **2. Staging Area (Área de Preparação):** é o local onde você coloca os arquivos que deseja incluir no próximo salvamento. É o momento do `git add`.
+* **3. Local Repository (Repositório Local):** é onde o Git guarda o histórico dos commits no seu computador. É o momento do `git commit`, que registra um ponto no histórico do projeto.
+
+> **Importante:** o GitHub não é uma das três áreas principais do Git. Ele é o repositório remoto, ou seja, a cópia online do projeto que recebe os seus commits quando você usa `git push`.
 
 Entender essas três áreas ajuda a visualizar como o Git guarda e organiza as mudanças do projeto. Com isso em mente, vamos agora comparar o Git com o GitHub, que muitas vezes aparecem juntos, mas têm papéis diferentes.
 
@@ -81,7 +107,37 @@ Agora que já ficou claro o papel de cada um, podemos passar para a parte mais p
 
 ## 5. O Guia de Comandos Essenciais 💻
 
-Aqui estão os primeiros comandos que você vai usar na sua jornada de programação:
+Antes de começarmos com os comandos do Git, vamos entender onde vamos digitar tudo isso. O local que usamos é o **Prompt de Comando** (no Windows, o PowerShell ou o CMD), também chamado de **terminal**. É como uma caixa de texto onde damos instruções para o computador.
+
+### Comandos básicos do terminal
+
+Aqui estão alguns comandos simples que ajudam a navegar pelo computador no Windows:
+
+1. **Listar os arquivos e pastas da pasta atual:**
+   ```powershell
+   dir
+   ```
+2. **Entrar em uma pasta:**
+   ```powershell
+   cd nome_da_pasta
+   ```
+   Também é possível informar o caminho completo da pasta, por exemplo:
+   ```powershell
+   cd C:\Users\SeuNome\Documents\meu_projeto
+   ```
+3. **Voltar para a pasta anterior:**
+   ```powershell
+   cd ..
+   ```
+   
+4. **Criar uma pasta nova:**
+   ```powershell
+   mkdir nome_da_pasta
+   ```
+
+> **Dica:** O comando `dir` serve para mostrar o conteúdo da pasta atual, como se fosse uma lista do que existe ali. Já o `cd` é usado para navegar entre pastas, permitindo acessar diferentes diretórios, inclusive usando o caminho completo. E o `mkdir` é usado para criar novas pastas, ajudando a organizar os arquivos do projeto. O importante é entender que cada comando informa o terminal o que fazer.
+
+Agora que já sabemos como abrir caminhos e navegar entre pastas, podemos aprender os comandos do Git para registrar versões do nosso projeto.
 
 ### Configuração Inicial (Apenas na primeira vez)
 Antes de começar, o Git precisa saber quem é você para assinar os seus *saves*:
@@ -104,18 +160,32 @@ git config --global user.email "seu.email@provedor.com"
    git add meu_programa.py  # Adiciona um arquivo específico
    git add .                # Adiciona TODOS os arquivos modificados da pasta
    ```
-4. **Salvar a versão (Commit):** Cria o ponto na linha do tempo com uma mensagem explicativa.
+4. **Salvar a versão (Commit):** Cria um ponto registrado no histórico do projeto com uma mensagem que explica o que foi alterado.
    ```bash
    git commit -m "Mensagem clara explicando o que foi feito"
    ```
-5. **Enviar para a Nuvem (GitHub):** Envia seus commits locais para o repositório online.
+   - `git commit` → registra as alterações que já foram colocadas no estágio (`git add`).
+   - `-m` → significa "message" e serve para escrever a mensagem diretamente na linha de comando.
+   - `"Mensagem clara explicando o que foi feito"` → é a descrição do commit, ajudando a entender depois o que foi alterado.
+
+5. **Enviar para a Nuvem (GitHub):** Envia os commits que estão no computador para o repositório remoto online.
    ```bash
    git push origin main
    ```
+   - `git push` → envia os commits locais para o GitHub.
+   - `origin` → representa o repositório remoto principal configurado para esse projeto.
+   - `main` → é o nome da branch (ramo) que você está enviando.
+
+ >  **O que é uma branch?**
+   Pense na `branch` como uma linha de trabalho separada dentro do projeto. Enquanto a branch principal (`main`) é a versão mais importante do projeto, você pode criar outra branch para testar algo novo sem mexer na versão principal.
+>
+ >  Uma forma simples de imaginar é assim:
+ >  - `main` = o caminho principal do projeto;
+ >  - uma nova branch = um caminho paralelo, onde você pode experimentar e depois decidir se une essa mudança à branch principal.
+>
+  > Para iniciantes, a ideia importante é: branch ajuda a organizar o trabalho e evitar que uma mudança bagunce o projeto inteiro.
 
 Com esses comandos em mente, já conseguimos imaginar como o fluxo completo funciona no dia a dia. Agora vamos usar esse conhecimento para fixar tudo com exercícios práticos.
-
----
 
 ---
 
