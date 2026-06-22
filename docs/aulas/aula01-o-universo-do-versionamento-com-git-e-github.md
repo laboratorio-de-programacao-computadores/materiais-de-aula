@@ -36,30 +36,30 @@ Isso gera caos, perda de arquivos e uma confusão imensa quando trabalhamos em e
 O Git gerencia o histórico de um único arquivo (ou conjunto de arquivos) ao longo do tempo. Em vez de criar cópias da pasta, o Git cria uma "linha do tempo" onde cada ponto marcante é registrado com segurança.
 
 > **Definição formal:** O Git é um sistema de controle de versão distribuído, usado para registrar alterações em arquivos ao longo do tempo, permitindo acompanhar diferentes versões de um projeto, voltar para pontos anteriores e trabalhar com segurança em equipe.
->
-> **O que significa “distribuído”?** Isso quer dizer que cada pessoa que trabalha no projeto recebe uma cópia completa do histórico e do repositório, em vez de depender de um único computador central para guardar tudo.
->
-> **Qual seria a outra opção?** A alternativa mais comum é o modelo **centralizado**, em que existe um único servidor principal que guarda o histórico e todas as pessoas acessam esse servidor.
->
-> **Vantagens do modelo distribuído (Git):**
-> - cada pessoa pode trabalhar mesmo sem internet;
-> - é possível voltar para versões antigas com mais facilidade;
-> - o projeto não depende de um único servidor para funcionar;
-> - ajuda muito quando várias pessoas editam o mesmo projeto.
->
-> **Desvantagens do modelo distribuído:**
-> - pode parecer mais complicado no começo;
-> - exige aprender alguns conceitos e comandos novos;
-> - se a pessoa não organizar bem os commits, o histórico pode ficar confuso.
->
-> **Vantagens do modelo centralizado:**
-> - é mais simples de entender no início;
-> - centraliza tudo em um lugar só.
->
-> **Desvantagens do modelo centralizado:**
-> - depende de um servidor principal;
-> - se o servidor ficar indisponível, o trabalho pode ser prejudicado;
-> - nem sempre é tão confortável para trabalho offline.
+
+**O que significa “distribuído”?** Isso quer dizer que cada pessoa que trabalha no projeto recebe uma cópia completa do histórico e do repositório, em vez de depender de um único computador central para guardar tudo.
+
+**Qual seria a outra opção?** A alternativa mais comum é o modelo **centralizado**, em que existe um único servidor principal que guarda o histórico e todas as pessoas acessam esse servidor.
+
+**Vantagens do modelo distribuído (Git):**
+- cada pessoa pode trabalhar mesmo sem internet;
+- é possível voltar para versões antigas com mais facilidade;
+- o projeto não depende de um único servidor para funcionar;
+- ajuda muito quando várias pessoas editam o mesmo projeto.
+
+**Desvantagens do modelo distribuído:**
+- pode parecer mais complicado no começo;
+- exige aprender alguns conceitos e comandos novos;
+- se a pessoa não organizar bem os commits, o histórico pode ficar confuso.
+
+**Vantagens do modelo centralizado:**
+- é mais simples de entender no início;
+- centraliza tudo em um lugar só.
+
+**Desvantagens do modelo centralizado:**
+- depende de um servidor principal;
+- se o servidor ficar indisponível, o trabalho pode ser prejudicado;
+- nem sempre é tão confortável para trabalho offline.
 
 Agora que já entendemos por que o Git é tão útil, podemos observar como ele organiza esse processo em etapas claras. Na próxima seção, vamos descobrir como essas etapas funcionam na prática.
 
