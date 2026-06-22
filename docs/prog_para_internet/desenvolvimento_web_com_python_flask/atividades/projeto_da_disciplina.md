@@ -52,7 +52,7 @@ O arquivo de configuração do pipeline deve ser criado no caminho exato `.githu
     * Sistemas convencionais de controle de biblioteca (livros/empréstimos).
     * Sistemas genéricos de cadastro de usuários, clínicas ou petshops sem lógica de negócio densa.
     * Agendas de contatos ou listas de tarefas (To-Do Lists) tradicionais.
-> Os projetos devem possuir um contexto de mercado real ou propor soluções criativas para problemas específicos (ex: uma plataforma integrada para monitoramento e troca de figurinhas colecionáveis da Copa do Mundo de 2026).
+> Os projetos devem possuir um contexto de mercado real ou propor soluções criativas para problemas específicos (ex: uma plataforma integrada para monitoramento e troca de figurinhas colecionáveis da Copa do Mundo de 2026).*
 * **Processo de Submissão e Validação:** A ideia deve partir da equipe. O grupo deverá detalhar o escopo inicial, descrevendo os principais objetivos da aplicação e os requisitos funcionais vislumbrados. Esse texto deve ser escrito diretamente no arquivo `README.md` principal do repositório oficial da equipe criado dentro da Organização. O professor revisará o arquivo e efetuará a aprovação ou solicitará ajustes no escopo de forma presencial ou via comentários no próprio GitHub.
 
 ## 5. Processo de Avaliação e Entregas (Ciclo de Vida)
